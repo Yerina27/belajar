@@ -1,2 +1,281 @@
 SELAMAT DATANG DI WEBSITE YERINA PARDOSI
 <!doctype html><html lang="id"><head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Kelas Bu Sari</title></head><body> <h1>Selamat datang!</h1> <p>Website kelas Fisika.</p></body></html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Besaran dan Satuan – Belajar Fisika</title>
+<style>
+  :root { --navy:#17324d; --blue:#247ba0; --teal:#70c1b3; --cream:#f4f7f5; --gold:#f3b562; --ink:#243342; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--ink); background:var(--cream); line-height:1.6; }
+  header { background:linear-gradient(120deg,var(--navy),var(--blue)); color:white; padding:42px 20px; text-align:center; }
+  header h1 { margin:0 0 8px; font-size:clamp(2rem,5vw,3rem); }
+  header p { margin:0 auto; max-width:720px; }
+  nav { position:sticky; top:0; z-index:5; display:flex; justify-content:center; flex-wrap:wrap; gap:8px; padding:10px; background:white; box-shadow:0 2px 8px #0001; }
+  nav a { color:var(--navy); text-decoration:none; font-weight:bold; padding:7px 12px; border-radius:20px; }
+  nav a:hover { background:#e6f2f2; }
+  main { max-width:1050px; margin:26px auto; padding:0 16px 40px; }
+  section { background:white; border-radius:16px; padding:24px; margin:20px 0; box-shadow:0 5px 18px #17324d12; }
+  h2 { color:var(--navy); margin-top:0; }
+  h3 { color:var(--blue); margin-bottom:6px; }
+  .lead { font-size:1.08rem; }
+  .callout { background:#eaf6f3; border-left:5px solid var(--teal); padding:13px 16px; border-radius:8px; }
+  .table-wrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; min-width:560px; }
+  th,td { padding:11px 12px; border:1px solid #dce5e8; text-align:left; }
+  th { background:#eaf2f6; color:var(--navy); }
+  tr:nth-child(even) td { background:#fafcfc; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:13px; }
+  .card { border:1px solid #dce8e8; border-radius:12px; padding:15px; background:#fbfdfd; }
+  .card strong { color:var(--blue); }
+  .question { border:1px solid #dce5e8; padding:17px; border-radius:12px; margin:15px 0; }
+  .question p { margin:0 0 10px; font-weight:bold; }
+  .options { display:grid; gap:8px; }
+  .options label { display:flex; gap:9px; align-items:flex-start; padding:9px 11px; border:1px solid #dce5e8; border-radius:8px; cursor:pointer; }
+  .options label:hover { background:#f1f8f7; }
+  input[type=radio] { margin-top:5px; accent-color:var(--blue); }
+  button { border:0; border-radius:9px; background:var(--blue); color:white; padding:11px 18px; font-weight:bold; cursor:pointer; margin:8px 7px 0 0; }
+  button:hover { filter:brightness(.92); }
+  button.secondary { background:var(--navy); }
+  #result { margin-top:16px; padding:15px; border-radius:10px; display:none; }
+  .correct { color:#18794e; font-weight:bold; }
+  .wrong { color:#b54736; font-weight:bold; }
+  .explanation { font-size:.95rem; margin:7px 0 0; }
+  footer { text-align:center; padding:22px; color:#60717d; font-size:.9rem; }
+  @media(max-width:600px) { section { padding:18px; } nav a { font-size:.9rem; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Besaran dan Satuan</h1>
+  <p>Mengenal cara fisikawan mengukur dan menyatakan berbagai gejala alam.</p>
+</header>
+<nav>
+  <a href="#pengertian">Pengertian</a>
+  <a href="#pokok">Besaran Pokok</a>
+  <a href="#turunan">Besaran Turunan</a>
+  <a href="#alat">Alat Ukur</a>
+  <a href="#kuis">Kuis Tebak-tebakan</a>
+</nav>
+
+<main>
+<section id="pengertian">
+  <h2>1. Apa itu besaran dan satuan?</h2>
+  <p class="lead"><b>Besaran</b> adalah sesuatu yang dapat diukur dan dinyatakan dengan angka serta satuan. <b>Satuan</b> adalah pembanding atau standar yang digunakan dalam pengukuran.</p>
+  <div class="callout"><b>Contoh:</b> panjang meja adalah 1,2 meter. Angka <b>1,2</b> menyatakan nilai besaran, sedangkan <b>meter (m)</b> adalah satuannya.</div>
+  <h3>Mengapa satuan baku diperlukan?</h3>
+  <ul>
+    <li>Agar hasil pengukuran dapat dipahami dan dibandingkan oleh semua orang.</li>
+    <li>Mengurangi perbedaan hasil akibat penggunaan satuan yang tidak seragam.</li>
+    <li>Memudahkan komunikasi hasil pengukuran dalam sains dan kehidupan sehari-hari.</li>
+  </ul>
+  <h3>Sistem Satuan Internasional (SI)</h3>
+  <p>SI adalah sistem satuan yang disepakati secara internasional. Dalam fisika, hasil pengukuran umumnya dituliskan menggunakan satuan SI.</p>
+</section>
+
+<section id="pokok">
+  <h2>2. Tujuh besaran pokok SI</h2>
+  <p>Besaran pokok merupakan besaran dasar yang satuannya ditetapkan terlebih dahulu dan tidak diturunkan dari besaran lain.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>No.</th><th>Besaran pokok</th><th>Satuan SI</th><th>Lambang satuan</th><th>Alat ukur (contoh)</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Panjang</td><td>meter</td><td>m</td><td>Mistar, meteran</td></tr>
+      <tr><td>2</td><td>Massa</td><td>kilogram</td><td>kg</td><td>Neraca</td></tr>
+      <tr><td>3</td><td>Waktu</td><td>sekon</td><td>s</td><td>Stopwatch, jam</td></tr>
+      <tr><td>4</td><td>Kuat arus listrik</td><td>ampere</td><td>A</td><td>Amperemeter</td></tr>
+      <tr><td>5</td><td>Suhu termodinamik</td><td>kelvin</td><td>K</td><td>Termometer</td></tr>
+      <tr><td>6</td><td>Jumlah zat</td><td>mol</td><td>mol</td><td>Ditentukan melalui pengukuran/perhitungan kimia</td></tr>
+      <tr><td>7</td><td>Intensitas cahaya</td><td>kandela</td><td>cd</td><td>Fotometer (untuk pengukuran terkait cahaya)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="callout"><b>Ingat:</b> lambang satuan ditulis dengan tepat. Contohnya meter = m, kilogram = kg, sekon = s, dan kelvin = K.</p>
+</section>
+
+<section id="turunan">
+  <h2>3. Besaran turunan</h2>
+  <p>Besaran turunan adalah besaran yang diperoleh dari gabungan beberapa besaran pokok melalui operasi matematika.</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Besaran turunan</th><th>Hubungan</th><th>Satuan SI</th><th>Lambang</th></tr></thead>
+    <tbody>
+      <tr><td>Luas</td><td>panjang × panjang</td><td>meter persegi</td><td>m²</td></tr>
+      <tr><td>Volume</td><td>panjang × panjang × panjang</td><td>meter kubik</td><td>m³</td></tr>
+      <tr><td>Kecepatan</td><td>perpindahan ÷ waktu</td><td>meter per sekon</td><td>m/s</td></tr>
+      <tr><td>Percepatan</td><td>perubahan kecepatan ÷ waktu</td><td>meter per sekon kuadrat</td><td>m/s²</td></tr>
+      <tr><td>Gaya</td><td>massa × percepatan</td><td>newton</td><td>N</td></tr>
+      <tr><td>Tekanan</td><td>gaya ÷ luas</td><td>pascal</td><td>Pa</td></tr>
+      <tr><td>Massa jenis</td><td>massa ÷ volume</td><td>kilogram per meter kubik</td><td>kg/m³</td></tr>
+      <tr><td>Energi</td><td>usaha/energi</td><td>joule</td><td>J</td></tr>
+      <tr><td>Daya</td><td>energi ÷ waktu</td><td>watt</td><td>W</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="cards">
+    <div class="card"><strong>Besaran skalar</strong><p>Hanya memiliki nilai dan satuan. Contoh: massa, waktu, suhu, energi.</p></div>
+    <div class="card"><strong>Besaran vektor</strong><p>Memiliki nilai, satuan, dan arah. Contoh: perpindahan, kecepatan, percepatan, gaya.</p></div>
+  </div>
+</section>
+
+<section id="alat">
+  <h2>4. Alat ukur dalam kehidupan sehari-hari</h2>
+  <div class="cards">
+    <div class="card"><strong>Mistar atau meteran</strong><p>Mengukur panjang atau jarak.</p></div>
+    <div class="card"><strong>Neraca</strong><p>Mengukur massa benda.</p></div>
+    <div class="card"><strong>Stopwatch</strong><p>Mengukur selang waktu.</p></div>
+    <div class="card"><strong>Termometer</strong><p>Mengukur suhu.</p></div>
+    <div class="card"><strong>Amperemeter</strong><p>Mengukur kuat arus listrik.</p></div>
+    <div class="card"><strong>Jangka sorong</strong><p>Mengukur diameter luar, diameter dalam, dan kedalaman dengan teliti.</p></div>
+    <div class="card"><strong>Mikrometer sekrup</strong><p>Mengukur ketebalan atau diameter benda kecil.</p></div>
+  </div>
+  <h3>Contoh membaca hasil pengukuran</h3>
+  <p>Jika panjang pensil terbaca 15 cm, hasil tersebut dapat ditulis sebagai 15 cm. Dalam satuan SI, 15 cm = 0,15 m.</p>
+</section>
+
+<section id="kuis">
+  <h2>5. Kuis tebak-tebakan besaran dan satuan</h2>
+  <p>Uji pemahamanmu! Pilih satu jawaban untuk setiap pertanyaan, lalu tekan <b>Periksa Jawaban</b> untuk melihat skor dan pembahasannya.</p>
+  <form id="quizForm">
+    <div class="question" data-answer="b" data-explain="Panjang merupakan besaran pokok dengan satuan SI meter (m).">
+      <p>1. Aku digunakan untuk menyatakan seberapa jauh atau panjang suatu benda. Satuan SI-ku adalah meter. Siapakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="a"> Massa</label>
+        <label><input type="radio" name="q1" value="b"> Panjang</label>
+        <label><input type="radio" name="q1" value="c"> Waktu</label>
+        <label><input type="radio" name="q1" value="d"> Suhu</label>
+      </div>
+    </div>
+    <div class="question" data-answer="c" data-explain="Kilogram (kg) adalah satuan SI untuk massa, sedangkan berat merupakan gaya yang satuannya newton (N).">
+      <p>2. Aku sering tertukar dengan berat. Satuan SI-ku kilogram (kg). Besaran apakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="a"> Gaya</label>
+        <label><input type="radio" name="q2" value="b"> Berat</label>
+        <label><input type="radio" name="q2" value="c"> Massa</label>
+        <label><input type="radio" name="q2" value="d"> Tekanan</label>
+      </div>
+    </div>
+    <div class="question" data-answer="a" data-explain="Sekon (s) adalah satuan SI untuk waktu. Stopwatch dapat digunakan untuk mengukur selang waktu.">
+      <p>3. Aku diukur menggunakan stopwatch. Satuan SI-ku adalah sekon. Siapakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="a"> Waktu</label>
+        <label><input type="radio" name="q3" value="b"> Suhu</label>
+        <label><input type="radio" name="q3" value="c"> Panjang</label>
+        <label><input type="radio" name="q3" value="d"> Kuat arus</label>
+      </div>
+    </div>
+    <div class="question" data-answer="d" data-explain="Luas adalah besaran turunan. Satuan SI-nya meter persegi (m²), karena panjang dikalikan panjang.">
+      <p>4. Aku diperoleh dari panjang dikalikan lebar. Satuan SI-ku m². Apakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q4" value="a"> Volume</label>
+        <label><input type="radio" name="q4" value="b"> Kecepatan</label>
+        <label><input type="radio" name="q4" value="c"> Massa jenis</label>
+        <label><input type="radio" name="q4" value="d"> Luas</label>
+      </div>
+    </div>
+    <div class="question" data-answer="b" data-explain="Kecepatan merupakan besaran turunan dengan satuan SI meter per sekon (m/s).">
+      <p>5. Aku menunjukkan perubahan posisi tiap satuan waktu. Satuan SI-ku m/s. Siapakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q5" value="a"> Percepatan</label>
+        <label><input type="radio" name="q5" value="b"> Kecepatan</label>
+        <label><input type="radio" name="q5" value="c"> Gaya</label>
+        <label><input type="radio" name="q5" value="d"> Energi</label>
+      </div>
+    </div>
+    <div class="question" data-answer="c" data-explain="Newton (N) adalah satuan SI untuk gaya. Berdasarkan Hukum II Newton, gaya resultan berkaitan dengan massa dan percepatan.">
+      <p>6. Aku dapat menyebabkan benda mengalami percepatan. Satuan SI-ku newton. Apakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q6" value="a"> Energi</label>
+        <label><input type="radio" name="q6" value="b"> Daya</label>
+        <label><input type="radio" name="q6" value="c"> Gaya</label>
+        <label><input type="radio" name="q6" value="d"> Tekanan</label>
+      </div>
+    </div>
+    <div class="question" data-answer="a" data-explain="Kelvin (K) merupakan satuan SI untuk suhu termodinamik. Perhatikan bahwa lambangnya K, tanpa tanda derajat.">
+      <p>7. Aku menyatakan tingkat panas atau dingin suatu benda. Satuan SI-ku kelvin. Siapakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q7" value="a"> Suhu termodinamik</label>
+        <label><input type="radio" name="q7" value="b"> Jumlah zat</label>
+        <label><input type="radio" name="q7" value="c"> Intensitas cahaya</label>
+        <label><input type="radio" name="q7" value="d"> Massa</label>
+      </div>
+    </div>
+    <div class="question" data-answer="d" data-explain="Tekanan adalah gaya per satuan luas. Satuan SI-nya pascal (Pa), setara dengan N/m².">
+      <p>8. Aku adalah gaya yang bekerja pada setiap satuan luas. Satuan SI-ku pascal. Apakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q8" value="a"> Daya</label>
+        <label><input type="radio" name="q8" value="b"> Energi</label>
+        <label><input type="radio" name="q8" value="c"> Massa jenis</label>
+        <label><input type="radio" name="q8" value="d"> Tekanan</label>
+      </div>
+    </div>
+    <div class="question" data-answer="b" data-explain="Kuat arus listrik adalah besaran pokok dengan satuan SI ampere (A).">
+      <p>9. Aku diukur dengan amperemeter. Satuan SI-ku ampere. Siapakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q9" value="a"> Tegangan listrik</label>
+        <label><input type="radio" name="q9" value="b"> Kuat arus listrik</label>
+        <label><input type="radio" name="q9" value="c"> Hambatan listrik</label>
+        <label><input type="radio" name="q9" value="d"> Daya listrik</label>
+      </div>
+    </div>
+    <div class="question" data-answer="c" data-explain="Volume merupakan besaran turunan dengan satuan SI meter kubik (m³).">
+      <p>10. Aku menyatakan ruang yang ditempati benda. Satuan SI-ku m³. Apakah aku?</p>
+      <div class="options">
+        <label><input type="radio" name="q10" value="a"> Luas</label>
+        <label><input type="radio" name="q10" value="b"> Panjang</label>
+        <label><input type="radio" name="q10" value="c"> Volume</label>
+        <label><input type="radio" name="q10" value="d"> Massa</label>
+      </div>
+    </div>
+    <button type="button" onclick="checkAnswers()">Periksa Jawaban</button>
+    <button type="reset" class="secondary" onclick="resetQuiz()">Ulangi Kuis</button>
+  </form>
+  <div id="result" aria-live="polite"></div>
+</section>
+</main>
+<footer>Materi Fisika SMA • Besaran dan Satuan • Selamat belajar!</footer>
+<script>
+function checkAnswers() {
+  const questions = [...document.querySelectorAll('.question')];
+  let score = 0;
+  let answered = 0;
+  questions.forEach((q, i) => {
+    const selected = q.querySelector('input:checked');
+    const old = q.querySelector('.explanation');
+    if (old) old.remove();
+    const p = document.createElement('p');
+    p.className = 'explanation';
+    if (!selected) {
+      p.innerHTML = '<span class="wrong">Belum dijawab.</span> ' + q.dataset.explain;
+    } else {
+      answered++;
+      if (selected.value === q.dataset.answer) {
+        score++;
+        p.innerHTML = '<span class="correct">Tepat!</span> ' + q.dataset.explain;
+      } else {
+        p.innerHTML = '<span class="wrong">Belum tepat.</span> ' + q.dataset.explain;
+      }
+    }
+    q.appendChild(p);
+  });
+  const result = document.getElementById('result');
+  result.style.display = 'block';
+  result.style.background = score >= 8 ? '#eaf6ef' : '#fff5e8';
+  result.innerHTML = '<h3>Hasil kuis: ' + score + ' dari ' + questions.length + '</h3>' +
+    '<p>Kamu menjawab ' + answered + ' dari ' + questions.length + ' soal.</p>' +
+    '<p>' + (score === 10 ? 'Luar biasa! Kamu sudah menguasai materi ini.' :
+    score >= 7 ? 'Bagus! Pelajari kembali pembahasan pada soal yang belum tepat.' :
+    'Tetap semangat! Baca kembali materi, lalu coba lagi.') + '</p>';
+  result.scrollIntoView({behavior:'smooth', block:'center'});
+}
+function resetQuiz() {
+  document.querySelectorAll('.explanation').forEach(el => el.remove());
+  const result = document.getElementById('result');
+  result.style.display = 'none';
+  result.innerHTML = '';
+}
+</script>
+</body>
+</html>
