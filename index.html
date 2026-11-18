@@ -1,409 +1,222 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Belajar dan Kuis Gerak Lurus</title>
+<title>Gerak Lurus - Belajar & Tantangan Jutawan</title>
 <style>
-* { box-sizing: border-box; }
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  background: #eef4fb;
-  color: #243247;
-}
-header {
-  background: linear-gradient(135deg,#1557a0,#2684d9);
-  color: white;
-  text-align: center;
-  padding: 30px 15px;
-}
-header h1 { margin: 0 0 10px; }
-.container {
-  max-width: 850px;
-  margin: 22px auto;
-  padding: 0 15px;
-}
-.card {
-  background: white;
-  padding: 22px;
-  border-radius: 14px;
-  margin-bottom: 20px;
-  box-shadow: 0 3px 12px #00000012;
-}
-h2 { color: #1557a0; }
-.formula {
-  background: #eaf3ff;
-  border-left: 5px solid #2684d9;
-  padding: 12px;
-  margin: 12px 0;
-  border-radius: 6px;
-  font-size: 17px;
-}
-.question {
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 1.5;
-}
-.option {
-  display: block;
-  width: 100%;
-  text-align: left;
-  background: #f4f7fb;
-  border: 2px solid #dce5ef;
-  padding: 13px;
-  margin: 10px 0;
-  border-radius: 9px;
-  cursor: pointer;
-  font-size: 16px;
-}
-.option:hover:not(:disabled) {
-  background: #e3efff;
-  border-color: #2684d9;
-}
-.option:disabled { cursor: default; opacity: 1; }
-.correct {
-  background: #d5f5df !important;
-  border-color: #159447 !important;
-  color: #11652f;
-}
-.wrong {
-  background: #ffe0e0 !important;
-  border-color: #dc3030 !important;
-  color: #a51d1d;
-}
-.feedback {
-  padding: 12px;
-  border-radius: 8px;
-  margin-top: 12px;
-  display: none;
-  line-height: 1.5;
-}
-.feedback.good { background: #d5f5df; color: #11652f; }
-.feedback.bad { background: #ffe0e0; color: #a51d1d; }
-button.action {
-  background: #1557a0;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px 22px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 12px;
-}
-button.action:hover { background: #0d3f78; }
-button.action:disabled { background: #9aabba; cursor: not-allowed; }
-.status {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  flex-wrap: wrap;
-  font-weight: bold;
-  color: #1557a0;
-  margin-bottom: 14px;
-}
-.progress {
-  height: 10px;
-  background: #e2e9f1;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-.bar {
-  height: 100%;
-  width: 0;
-  background: #268b50;
-  transition: width .3s;
-}
-#result { display: none; text-align: center; }
-.score { font-size: 42px; color: #168347; font-weight: bold; }
-footer { text-align: center; padding: 20px; color: #667; }
+:root{--navy:#08152f;--blue:#142e62;--cyan:#19c6d2;--gold:#ffc857;--white:#f7f9ff;--muted:#b9c7e6;--green:#28c76f;--red:#ff5d73}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at top,#1c3e7c 0,#0b1b3c 45%,#050b1b 100%);color:var(--white);line-height:1.55}
+header{text-align:center;padding:38px 18px 25px}
+header .eyebrow{color:var(--cyan);letter-spacing:3px;font-weight:bold;font-size:.82rem}
+h1{font-size:clamp(2rem,5vw,3.5rem);margin:8px 0;color:white}
+header p{max-width:760px;margin:0 auto;color:var(--muted)}
+nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:0 14px 22px}
+nav button,.btn{border:1px solid #47659d;background:#18366d;color:white;padding:11px 17px;border-radius:999px;cursor:pointer;font-weight:bold}
+nav button.active,nav button:hover,.btn.primary{background:var(--cyan);color:#07142d;border-color:var(--cyan)}
+main{width:min(1050px,94%);margin:auto;padding-bottom:55px}
+.panel{background:rgba(13,31,67,.94);border:1px solid #294879;border-radius:18px;padding:clamp(18px,3vw,30px);box-shadow:0 14px 35px #0005;margin-bottom:22px}
+.panel h2{color:var(--gold);margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.concept{background:#102752;border:1px solid #2c4a7d;border-radius:14px;padding:17px}
+.concept h3{margin:0 0 8px;color:var(--cyan)}
+.formula{display:block;background:#06132b;border-left:4px solid var(--gold);padding:12px 15px;border-radius:8px;margin:10px 0;font-size:1.05rem;font-weight:bold;letter-spacing:.3px}
+.note{color:var(--muted);font-size:.94rem}
+ul{padding-left:22px}
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{padding:10px;border:1px solid #35517f;text-align:left}
+th{background:#18366d}
+#game{display:none}
+.game-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.lifelines{display:flex;gap:8px;flex-wrap:wrap}
+.lifelines button{border:1px solid var(--cyan);background:#102b58;color:white;border-radius:9px;padding:9px 12px;cursor:pointer}
+.lifelines button:disabled{opacity:.35;cursor:not-allowed}
+.progress{display:flex;gap:5px;margin:17px 0;flex-wrap:wrap}
+.step{flex:1;min-width:22px;text-align:center;padding:7px 2px;border-radius:6px;background:#10234a;color:#91a6cf;font-size:.8rem}
+.step.current{background:var(--gold);color:#17213b;font-weight:bold}
+.step.done{background:#176e5a;color:white}
+.prize{color:var(--gold);font-weight:bold}
+.question{font-size:clamp(1.15rem,2.8vw,1.55rem);font-weight:bold;text-align:center;margin:24px auto;max-width:800px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.answer{background:#142f60;color:white;border:1px solid #42649d;padding:15px;border-radius:12px;text-align:left;cursor:pointer;font-size:1rem;min-height:60px}
+.answer:hover:not(:disabled){border-color:var(--cyan);background:#1c427d}
+.answer:disabled{cursor:default;opacity:.95}
+.answer.correct{background:#12643f;border-color:var(--green)}
+.answer.wrong{background:#7c2638;border-color:var(--red)}
+.answer .letter{color:var(--gold);font-weight:bold;margin-right:9px}
+#feedback{min-height:48px;text-align:center;margin:16px 0;font-weight:bold}
+.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+#result{text-align:center}
+.hidden{display:none!important}
+footer{text-align:center;color:#91a6cf;font-size:.85rem;padding:10px 15px 30px}
+@media(max-width:620px){.answers{grid-template-columns:1fr}.game-top{align-items:flex-start}}
 </style>
 </head>
 <body>
-
 <header>
-  <h1>🚗 BELAJAR GERAK LURUS</h1>
-  <p>Materi Fisika dan Kuis Interaktif</p>
+ <div class="eyebrow">FISIKA SMA • KINEMATIKA</div>
+ <h1>GERAK LURUS</h1>
+ <p>Pelajari konsep, pahami rumus, lalu uji kemampuanmu dalam tantangan interaktif bergaya <i>Who Wants to Be a Millionaire?</i></p>
 </header>
-
-<div class="container">
-
-<section class="card">
-<h2>📘 A. Pengertian Gerak Lurus</h2>
-<p>
-Gerak lurus adalah gerak suatu benda yang lintasannya berupa garis lurus.
-Suatu benda dikatakan bergerak apabila kedudukannya berubah terhadap titik acuan.
-</p>
-
-<h3>1. Jarak dan Perpindahan</h3>
-<ul>
-<li><b>Jarak:</b> panjang seluruh lintasan yang ditempuh benda. Jarak termasuk besaran skalar.</li>
-<li><b>Perpindahan:</b> perubahan posisi dari titik awal ke titik akhir beserta arahnya. Perpindahan termasuk besaran vektor.</li>
-</ul>
-
-<h3>2. Kelajuan dan Kecepatan</h3>
-<ul>
-<li><b>Kelajuan:</b> jarak yang ditempuh setiap satuan waktu.</li>
-<li><b>Kecepatan:</b> perpindahan setiap satuan waktu dengan memperhatikan arah.</li>
-</ul>
-<div class="formula">
-Kelajuan rata-rata = Jarak total / Waktu total
-<br><br>
-Kecepatan rata-rata = Perpindahan / Selang waktu
-</div>
-
-<h2>📗 B. Gerak Lurus Beraturan (GLB)</h2>
-<p>
-GLB adalah gerak benda pada lintasan lurus dengan kecepatan tetap.
-Dalam GLB, benda menempuh jarak yang sama dalam selang waktu yang sama.
-</p>
-<div class="formula">
-s = v × t
-<br><br>
-v = s / t
-<br><br>
-t = s / v
-</div>
-<p>Keterangan: s = perpindahan (m), v = kecepatan (m/s), t = waktu (s).</p>
-
-<h2>📙 C. Gerak Lurus Berubah Beraturan (GLBB)</h2>
-<p>
-GLBB adalah gerak lurus dengan percepatan tetap. Kecepatan benda berubah secara teratur setiap satuan waktu.
-</p>
-<div class="formula">
-v<sub>t</sub> = v<sub>0</sub> + a × t
-<br><br>
-s = v<sub>0</sub>t + ½at²
-<br><br>
-v<sub>t</sub>² = v<sub>0</sub>² + 2as
-</div>
-<p>
-Keterangan: v₀ = kecepatan awal, vₜ = kecepatan akhir,
-a = percepatan (m/s²), t = waktu (s), dan s = perpindahan (m).
-</p>
-
-<h2>📕 D. Percepatan</h2>
-<p>
-Percepatan adalah perubahan kecepatan setiap satuan waktu.
-</p>
-<div class="formula">
-a = (v<sub>t</sub> - v<sub>0</sub>) / t
-</div>
-<p>
-Percepatan positif menunjukkan kecepatan bertambah pada arah positif.
-Percepatan negatif menunjukkan perubahan kecepatan ke arah negatif.
-</p>
+<nav>
+ <button id="tabMateri" class="active" onclick="showSection('materi')">📘 Materi</button>
+ <button id="tabGame" onclick="showSection('game')">🏆 Kuis Jutawan</button>
+</nav>
+<main>
+<section id="materi">
+ <div class="panel">
+  <h2>1. Pengertian Gerak Lurus</h2>
+  <p>Gerak lurus adalah gerak benda yang lintasannya berupa garis lurus. Untuk menjelaskan gerak, kita menentukan posisi benda terhadap titik acuan serta memperhatikan perubahan posisi terhadap waktu.</p>
+  <div class="grid">
+   <div class="concept"><h3>Jarak</h3><p>Panjang seluruh lintasan yang ditempuh benda. Jarak merupakan besaran skalar dan tidak memperhatikan arah.</p></div>
+   <div class="concept"><h3>Perpindahan</h3><p>Perubahan posisi dari titik awal ke titik akhir. Perpindahan merupakan besaran vektor sehingga memiliki arah.</p></div>
+   <div class="concept"><h3>Kelajuan</h3><p>Jarak yang ditempuh setiap satuan waktu. Kelajuan tidak memiliki arah.</p></div>
+   <div class="concept"><h3>Kecepatan</h3><p>Perpindahan setiap satuan waktu. Kecepatan memiliki besar dan arah.</p></div>
+  </div>
+ </div>
+ <div class="panel">
+  <h2>2. Gerak Lurus Beraturan (GLB)</h2>
+  <p>GLB adalah gerak benda pada lintasan lurus dengan kecepatan tetap. Karena kecepatannya tetap, percepatan benda sama dengan nol.</p>
+  <span class="formula">v = s / t</span>
+  <span class="formula">s = v × t</span>
+  <ul>
+   <li><b>v</b> = kecepatan (m/s)</li><li><b>s</b> = perpindahan (m)</li><li><b>t</b> = waktu (s)</li>
+  </ul>
+  <p class="note">Contoh: sebuah sepeda bergerak lurus dengan kecepatan tetap 4 m/s selama 5 s. Perpindahannya adalah 4 × 5 = 20 m.</p>
+ </div>
+ <div class="panel">
+  <h2>3. Gerak Lurus Berubah Beraturan (GLBB)</h2>
+  <p>GLBB adalah gerak pada lintasan lurus dengan percepatan tetap. Kecepatan benda berubah secara teratur terhadap waktu.</p>
+  <span class="formula">a = (v − v₀) / t</span>
+  <span class="formula">v = v₀ + a × t</span>
+  <span class="formula">s = v₀ × t + ½ × a × t²</span>
+  <span class="formula">v² = v₀² + 2 × a × s</span>
+  <ul>
+   <li><b>v₀</b> = kecepatan awal (m/s)</li><li><b>v</b> = kecepatan akhir (m/s)</li>
+   <li><b>a</b> = percepatan (m/s²)</li><li><b>t</b> = waktu (s)</li><li><b>s</b> = perpindahan (m)</li>
+  </ul>
+  <p class="note">Percepatan positif menunjukkan percepatan searah dengan arah positif yang dipilih. Percepatan negatif menunjukkan percepatan berlawanan dengan arah positif tersebut; benda tidak selalu sedang melambat.</p>
+ </div>
+ <div class="panel">
+  <h2>4. Membaca Grafik Gerak</h2>
+  <div class="grid">
+   <div class="concept"><h3>Grafik posisi–waktu (x–t)</h3><p>Kemiringan grafik menyatakan kecepatan. Garis lurus miring menunjukkan kecepatan tetap; garis mendatar menunjukkan posisi tetap.</p></div>
+   <div class="concept"><h3>Grafik kecepatan–waktu (v–t)</h3><p>Kemiringan grafik menyatakan percepatan. Luas daerah di bawah grafik menyatakan perpindahan.</p></div>
+   <div class="concept"><h3>Grafik percepatan–waktu (a–t)</h3><p>Luas daerah di bawah grafik menyatakan perubahan kecepatan.</p></div>
+  </div>
+ </div>
+ <div class="panel">
+  <h2>5. Ringkasan Perbedaan GLB dan GLBB</h2>
+  <table>
+   <tr><th>Aspek</th><th>GLB</th><th>GLBB</th></tr>
+   <tr><td>Kecepatan</td><td>Tetap</td><td>Berubah teratur</td></tr>
+   <tr><td>Percepatan</td><td>Nol</td><td>Tetap</td></tr>
+   <tr><td>Grafik v–t</td><td>Garis mendatar</td><td>Garis miring lurus</td></tr>
+   <tr><td>Contoh ideal</td><td>Mobil bergerak lurus dengan kecepatan tetap</td><td>Benda jatuh bebas tanpa hambatan udara</td></tr>
+  </table>
+  <p class="note">Catatan: contoh merupakan model ideal untuk membantu memahami konsep fisika.</p>
+ </div>
+ <div class="panel" style="text-align:center">
+  <h2>Siap menjadi jutawan fisika?</h2>
+  <p>Jawab 10 pertanyaan. Setiap tingkat memiliki nilai hadiah yang semakin tinggi. Gunakan bantuan dengan bijak!</p>
+  <button class="btn primary" onclick="startGame()">Mulai Kuis Jutawan →</button>
+ </div>
 </section>
 
-<section class="card" id="quiz">
-<h2>🎯 Kuis Interaktif Gerak Lurus</h2>
-<p>
-Bacalah setiap soal dengan teliti. Pilih satu jawaban yang paling tepat.
-Setiap jawaban benar memperoleh 10 poin.
-</p>
-
-<div class="status">
-  <span id="number">Soal 1 dari 10</span>
-  <span id="score">Skor: 0</span>
-</div>
-<div class="progress"><div class="bar" id="bar"></div></div>
-
-<div id="question" class="question"></div>
-<div id="options"></div>
-<div id="feedback" class="feedback"></div>
-<button class="action" id="next" onclick="nextQuestion()" disabled>Soal Berikutnya →</button>
+<section id="game">
+ <div class="panel">
+  <div class="game-top">
+   <div><b>🏆 TANTANGAN JUTAWAN FISIKA</b><div class="note" id="round">Pertanyaan 1 dari 10</div></div>
+   <div class="lifelines">
+    <button id="fifty" onclick="useFifty()">50:50</button>
+    <button id="audience" onclick="useAudience()">Tanya Penonton</button>
+   </div>
+  </div>
+  <div class="progress" id="progress"></div>
+  <div class="prize" id="prize" style="text-align:center"></div>
+  <div class="question" id="question"></div>
+  <div class="answers" id="answers"></div>
+  <div id="feedback" aria-live="polite"></div>
+  <div class="actions"><button class="btn primary hidden" id="next" onclick="nextQuestion()">Pertanyaan berikutnya →</button><button class="btn hidden" id="restart" onclick="startGame()">Ulangi permainan</button></div>
+ </div>
+ <div class="panel hidden" id="result"></div>
 </section>
-
-<section class="card" id="result">
-<h2>🏆 Hasil Kuis Gerak Lurus</h2>
-<p>Skor akhir kamu:</p>
-<div class="score" id="finalScore">0</div>
-<p id="message"></p>
-<p id="correctCount"></p>
-<button class="action" onclick="restartQuiz()">Ulangi Kuis</button>
-</section>
-
-</div>
-
-<footer>
-Belajar Fisika dengan Semangat | Kuis Gerak Lurus
-</footer>
-
+</main>
+<footer>Media pembelajaran fisika • Gerak Lurus • Belajar dengan teliti dan sportif</footer>
 <script>
 const questions = [
-{
- q:"1. Suatu benda dikatakan bergerak apabila ....",
- o:[
- "Bentuk benda berubah",
- "Kedudukan benda berubah terhadap titik acuan",
- "Massa benda bertambah",
- "Warna benda berubah",
- "Suhu benda meningkat"
- ],
- a:1,
- e:"Gerak adalah perubahan kedudukan benda terhadap titik acuan."
-},
-{
- q:"2. Panjang seluruh lintasan yang ditempuh oleh suatu benda disebut ....",
- o:["Perpindahan","Kecepatan","Jarak","Percepatan","Kelajuan"],
- a:2,
- e:"Jarak merupakan panjang seluruh lintasan yang dilalui benda."
-},
-{
- q:"3. Seorang siswa berjalan sejauh 100 meter selama 20 sekon. Kelajuan rata-ratanya adalah ....",
- o:["2 m/s","4 m/s","5 m/s","10 m/s","20 m/s"],
- a:2,
- e:"Kelajuan = jarak/waktu = 100/20 = 5 m/s."
-},
-{
- q:"4. Ciri utama Gerak Lurus Beraturan (GLB) adalah ....",
- o:[
- "Kecepatan selalu berubah",
- "Percepatan selalu bertambah",
- "Kecepatan tetap",
- "Lintasan berbentuk lingkaran",
- "Benda selalu diam"
- ],
- a:2,
- e:"Pada GLB, benda bergerak lurus dengan kecepatan tetap dan percepatan nol."
-},
-{
- q:"5. Sebuah mobil bergerak dengan kecepatan tetap 15 m/s selama 4 sekon. Jarak yang ditempuh adalah ....",
- o:["19 m","30 m","45 m","60 m","75 m"],
- a:3,
- e:"s = v × t = 15 × 4 = 60 meter."
-},
-{
- q:"6. Gerak lurus dengan percepatan tetap disebut ....",
- o:["Gerak melingkar","Gerak lurus beraturan","Gerak lurus berubah beraturan","Gerak parabola","Gerak harmonik"],
- a:2,
- e:"GLBB merupakan gerak pada lintasan lurus dengan percepatan tetap."
-},
-{
- q:"7. Sebuah benda memiliki kecepatan awal 5 m/s. Setelah 3 sekon kecepatannya menjadi 17 m/s. Percepatannya adalah ....",
- o:["2 m/s²","3 m/s²","4 m/s²","5 m/s²","6 m/s²"],
- a:2,
- e:"a = (17 - 5)/3 = 12/3 = 4 m/s²."
-},
-{
- q:"8. Sebuah benda mula-mula diam, kemudian bergerak dengan percepatan 2 m/s² selama 5 sekon. Kecepatan akhirnya adalah ....",
- o:["5 m/s","7 m/s","10 m/s","12 m/s","15 m/s"],
- a:2,
- e:"vₜ = v₀ + at = 0 + (2 × 5) = 10 m/s."
-},
-{
- q:"9. Pada grafik kecepatan terhadap waktu (v-t), luas daerah di bawah grafik menyatakan ....",
- o:["Percepatan","Perpindahan","Massa","Gaya","Waktu"],
- a:1,
- e:"Luas di bawah grafik kecepatan-waktu menyatakan perpindahan."
-},
-{
- q:"10. Sebuah benda bergerak dengan kecepatan awal 0 m/s dan percepatan 2 m/s² selama 4 sekon. Perpindahannya adalah ....",
- o:["8 m","12 m","16 m","20 m","24 m"],
- a:2,
- e:"s = v₀t + ½at² = 0 + ½(2)(4²) = 16 meter."
-}
+ {q:"Sebuah benda bergerak menempuh lintasan lurus sejauh 120 m dalam waktu 20 s. Kelajuan rata-ratanya adalah …",o:["4 m/s","5 m/s","6 m/s","8 m/s"],a:2,e:"Kelajuan rata-rata = jarak/waktu = 120/20 = 6 m/s."},
+ {q:"Pernyataan yang tepat tentang perpindahan adalah …",o:["Jumlah seluruh panjang lintasan","Perubahan posisi dari titik awal ke titik akhir","Jarak yang ditempuh setiap sekon","Besaran yang selalu bernilai positif"],a:1,e:"Perpindahan menyatakan perubahan posisi dan memperhatikan arah."},
+ {q:"Mobil bergerak lurus dengan kecepatan tetap 15 m/s selama 8 s. Jarak yang ditempuh adalah …",o:["80 m","100 m","120 m","150 m"],a:2,e:"s = v × t = 15 × 8 = 120 m."},
+ {q:"Ciri utama Gerak Lurus Beraturan (GLB) adalah …",o:["Kecepatan tetap dan percepatan nol","Kecepatan selalu bertambah","Percepatan tetap dan tidak nol","Lintasan selalu berbentuk lingkaran"],a:0,e:"Pada GLB, kecepatan konstan sehingga percepatannya nol."},
+ {q:"Kecepatan sebuah sepeda berubah dari 4 m/s menjadi 16 m/s dalam 3 s. Percepatannya adalah …",o:["3 m/s²","4 m/s²","5 m/s²","6 m/s²"],a:1,e:"a = (v − v₀)/t = (16 − 4)/3 = 4 m/s²."},
+ {q:"Benda mula-mula diam lalu bergerak dengan percepatan tetap 2 m/s² selama 5 s. Kecepatan akhirnya adalah …",o:["5 m/s","7 m/s","10 m/s","12 m/s"],a:2,e:"v = v₀ + at = 0 + (2 × 5) = 10 m/s."},
+ {q:"Pada grafik kecepatan terhadap waktu (v–t), luas daerah di bawah kurva menyatakan …",o:["Percepatan","Perpindahan","Kecepatan rata-rata","Waktu tempuh"],a:1,e:"Luas aljabar di bawah grafik v–t menyatakan perpindahan."},
+ {q:"Sebuah benda bergerak dengan kecepatan awal 5 m/s dan percepatan 2 m/s² selama 4 s. Perpindahannya adalah …",o:["26 m","28 m","32 m","36 m"],a:3,e:"s = v₀t + ½at² = 5(4) + ½(2)(16) = 20 + 16 = 36 m."},
+ {q:"Sebuah benda bergerak lurus dengan kecepatan awal 20 m/s. Benda mengalami percepatan −2 m/s² selama 5 s. Kecepatan akhirnya adalah …",o:["5 m/s","10 m/s","15 m/s","30 m/s"],a:1,e:"v = v₀ + at = 20 + (−2 × 5) = 10 m/s."},
+ {q:"Pada grafik posisi terhadap waktu (x–t), sebuah garis lurus yang semakin curam menunjukkan bahwa …",o:["Kelajuan benda semakin besar","Percepatan pasti nol","Benda selalu diam","Waktu berjalan semakin lambat"],a:0,e:"Kemiringan grafik x–t menyatakan kecepatan. Kemiringan yang lebih besar berarti besar kecepatan lebih besar."}
 ];
-
-let current = 0;
-let score = 0;
-let correct = 0;
-let answered = false;
-
-function showQuestion() {
-  answered = false;
-  const q = questions[current];
-
-  document.getElementById("number").textContent =
-    "Soal " + (current+1) + " dari " + questions.length;
-  document.getElementById("score").textContent = "Skor: " + score;
-  document.getElementById("bar").style.width =
-    (current/questions.length*100) + "%";
-  document.getElementById("question").textContent = q.q;
-
-  const options = document.getElementById("options");
-  options.innerHTML = "";
-
-  q.o.forEach((option,index) => {
-    const btn = document.createElement("button");
-    btn.className = "option";
-    btn.textContent = String.fromCharCode(65+index) + ". " + option;
-    btn.onclick = () => chooseAnswer(index,btn);
-    options.appendChild(btn);
-  });
-
-  const feedback = document.getElementById("feedback");
-  feedback.style.display = "none";
-  feedback.className = "feedback";
-  document.getElementById("next").disabled = true;
-  document.getElementById("next").textContent =
-    current === questions.length-1 ? "Lihat Hasil 🏆" : "Soal Berikutnya →";
+const prizes=["Rp100.000","Rp200.000","Rp300.000","Rp500.000","Rp1.000.000","Rp2.000.000","Rp5.000.000","Rp10.000.000","Rp25.000.000","Rp50.000.000"];
+let index=0,locked=false,usedFifty=false,usedAudience=false,earned=0;
+function showSection(which){
+ document.getElementById("materi").style.display=which==="materi"?"block":"none";
+ document.getElementById("game").style.display=which==="game"?"block":"none";
+ document.getElementById("tabMateri").classList.toggle("active",which==="materi");
+ document.getElementById("tabGame").classList.toggle("active",which==="game");
 }
-
-function chooseAnswer(index, selectedButton) {
-  if (answered) return;
-  answered = true;
-
-  const q = questions[current];
-  const buttons = document.querySelectorAll(".option");
-  buttons.forEach(btn => btn.disabled = true);
-
-  const feedback = document.getElementById("feedback");
-
-  if (index === q.a) {
-    selectedButton.classList.add("correct");
-    score += 10;
-    correct++;
-    feedback.textContent = "✓ BENAR! Kamu memperoleh 10 poin. " + q.e;
-    feedback.classList.add("good");
-  } else {
-    selectedButton.classList.add("wrong");
-    buttons[q.a].classList.add("correct");
-    feedback.textContent = "✗ BELUM TEPAT. Jawaban yang benar adalah " +
-      String.fromCharCode(65+q.a) + ". " + q.o[q.a] + ". " + q.e;
-    feedback.classList.add("bad");
-  }
-
-  feedback.style.display = "block";
-  document.getElementById("score").textContent = "Skor: " + score;
-  document.getElementById("bar").style.width =
-    ((current+1)/questions.length*100) + "%";
-  document.getElementById("next").disabled = false;
+function startGame(){
+ index=0;locked=false;earned=0;usedFifty=false;usedAudience=false;
+ document.getElementById("result").classList.add("hidden");
+ document.getElementById("fifty").disabled=false;document.getElementById("audience").disabled=false;
+ document.getElementById("restart").classList.add("hidden");
+ document.getElementById("next").classList.add("hidden");
+ showSection("game");renderQuestion();
 }
-
-function nextQuestion() {
-  if (!answered) return;
-
-  current++;
-  if (current < questions.length) {
-    showQuestion();
-  } else {
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("result").style.display = "block";
-    document.getElementById("finalScore").textContent = score;
-    document.getElementById("correctCount").textContent =
-      "Jawaban benar: " + correct + " dari 10 soal.";
-    let message = "";
-    if (score === 100) message = "Luar biasa! Semua jawaban benar!";
-    else if (score >= 80) message = "Hebat! Pemahamanmu sangat baik.";
-    else if (score >= 60) message = "Bagus! Terus tingkatkan belajarmu.";
-    else message = "Tetap semangat! Pelajari kembali materi Gerak Lurus.";
-    document.getElementById("message").textContent = message;
-  }
+function renderQuestion(){
+ locked=false;
+ const q=questions[index];
+ document.getElementById("round").textContent=`Pertanyaan ${index+1} dari ${questions.length}`;
+ document.getElementById("prize").textContent=`Hadiah saat ini: ${prizes[index]}`;
+ document.getElementById("question").textContent=q.q;
+ document.getElementById("feedback").textContent="";
+ document.getElementById("next").classList.add("hidden");
+ const progress=document.getElementById("progress");progress.innerHTML="";
+ prizes.forEach((p,i)=>{const el=document.createElement("div");el.className="step"+(i===index?" current":i<index?" done":"");el.textContent=i+1;el.title=p;progress.appendChild(el)});
+ const box=document.getElementById("answers");box.innerHTML="";
+ q.o.forEach((option,i)=>{const b=document.createElement("button");b.className="answer";b.innerHTML=`<span class="letter">${"ABCD"[i]}.</span> ${option}`;b.onclick=()=>choose(i);b.dataset.index=i;box.appendChild(b)});
 }
-
-function restartQuiz() {
-  current = 0;
-  score = 0;
-  correct = 0;
-  document.getElementById("result").style.display = "none";
-  document.getElementById("quiz").style.display = "block";
-  showQuestion();
+function choose(choice){
+ if(locked)return;locked=true;
+ const q=questions[index],buttons=[...document.querySelectorAll(".answer")];
+ buttons.forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add("correct");else if(i===choice)b.classList.add("wrong")});
+ if(choice===q.a){earned=index+1;document.getElementById("feedback").textContent="BENAR! "+q.e;document.getElementById("feedback").style.color="#58e69a";document.getElementById("next").classList.remove("hidden");}
+ else{document.getElementById("feedback").textContent="Belum tepat. "+q.e+" Permainan berakhir.";document.getElementById("feedback").style.color="#ff8796";document.getElementById("restart").classList.remove("hidden");showResult(false);}
 }
-
-showQuestion();
+function nextQuestion(){
+ if(index===questions.length-1){showResult(true);return}
+ index++;renderQuestion();
+}
+function showResult(won){
+ document.getElementById("next").classList.add("hidden");
+ const result=document.getElementById("result");result.classList.remove("hidden");
+ const amount=won?prizes[prizes.length-1]:(earned?prizes[earned-1]:"Belum memperoleh hadiah");
+ result.innerHTML=`<h2>${won?"🎉 SELAMAT, JUTAWAN FISIKA!":"🏁 PERMAINAN SELESAI"}</h2><p>${won?"Kamu berhasil menjawab seluruh pertanyaan dengan benar.":"Terus belajar dan coba lagi, ya!"}</p><p>Jawaban benar: <b>${earned} dari 10</b></p><p>Hadiah permainan: <span class="prize">${amount}</span></p><button class="btn primary" onclick="startGame()">Main lagi</button>`;
+}
+function useFifty(){
+ if(usedFifty||locked)return;usedFifty=true;document.getElementById("fifty").disabled=true;
+ const q=questions[index],wrong=[0,1,2,3].filter(i=>i!==q.a).slice(0,2);
+ wrong.forEach(i=>{const b=document.querySelector(`.answer[data-index="${i}"]`);if(b){b.disabled=true;b.style.visibility="hidden"}});
+ document.getElementById("feedback").textContent="Bantuan 50:50 digunakan. Dua pilihan yang salah disingkirkan.";
+}
+function useAudience(){
+ if(usedAudience||locked)return;usedAudience=true;document.getElementById("audience").disabled=true;
+ const q=questions[index],correct=q.a;let vals=[12,15,18,20];vals[correct]=45;
+ let remain=55;for(let i=0;i<4;i++){if(i!==correct){vals[i]=Math.floor(Math.random()*16);remain-=vals[i]}}
+ vals[correct]+=remain;
+ document.getElementById("feedback").textContent="Hasil jajak pendapat penonton: "+vals.map((v,i)=>`${"ABCD"[i]} ${v}%`).join(" • ")+". Gunakan sebagai petunjuk, bukan kepastian.";
+}
+showSection("materi");
 </script>
 </body>
 </html>
